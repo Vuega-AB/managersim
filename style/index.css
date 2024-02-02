@@ -1,6 +1,7 @@
 .content{
     width: 100%;
-    height: 90vh;
+    min-height: 70vh;
+    padding: 10px 0;
     position: relative;
 }
 .img_content{
@@ -47,6 +48,7 @@
 
 .about_content_data{
     width: 60%;
+    overflow-x: hidden;
     height: 100%;
 }
 
@@ -198,4 +200,19 @@
     top: 0;
     left: 0;
     z-index: -2;
+}
+
+@media only screen and (max-width: 450px) {
+    .big-text{
+        font-size: 50px !important;
+    }
+}
+@media only screen and (max-width: 800px) {
+    .about_content_data{
+        font-size: 20px;
+        overflow-x: hidden;
+    }
+    .content_div_fixed_panel    {
+        width: 85% !important;
+    }
 }
