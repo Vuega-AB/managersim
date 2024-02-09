@@ -2,10 +2,15 @@
     font-size: 18px;
     padding: 15px 10px;
     margin: 0 1px;
-    border: none;
     background-color: transparent;
     transition: 0.2s all ease;
     color: white;
+    height: 100%;
+    border: none;
+    border-bottom: 5px solid transparent;
+}
+.default_button:hover{
+    border-bottom: 5px solid #1E453E;
 }
 button{
     font-family: 'Ubuntu', sans-serif;
@@ -26,6 +31,15 @@ p {
     border: none;
     font-weight: bold;
     padding: 17px 50px;
+}
+.colored_button2{
+    background-color: #1E453E;
+    font-size: 15px;
+    margin: 20px auto;
+    border: none;
+    font-weight: bold;
+    padding: 17px 50px;
+    color: white;
 }
 .default_input{
     width: 100%;

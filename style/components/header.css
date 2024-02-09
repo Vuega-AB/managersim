@@ -4,8 +4,8 @@ body {
 }
 .header{
     width: 100%;
-    padding: 20px 0;
     display: flex;
+    min-height: 90px;
     justify-content: space-between;
     align-items: center;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 2px 5px;

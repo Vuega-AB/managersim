@@ -1,222 +1,33 @@
+body {
+    margin: 0;
+    background-color: #090909;
+    font-family: 'Ubuntu', sans-serif;
+}
+.container{
+    width: 100%;
+    padding: 0 0 10px 0;
+    overflow: hidden;
+}
 .content{
-    width: 100%;
-    min-height: 90vh;
-    padding: 10px 0;
+    padding: 20px;
     position: relative;
-}
-.img_content{
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    height: 100%;
-    z-index: -1;
-}
-.football_player{
-    position: absolute;
-    right: 50px;
-    bottom: 0;
-    height: 90%;
-}
-.data-content{
-    padding: 100px;
-    width: 50%;
-    z-index: 2;
-}
-.p-data-content{
-    font-size: 50px;
-    margin: 0;
-    font-weight: 400;
-}
-.about_container{
-    width: 100%;
-    padding: 50px 0;
-}
-.about_content{
-    border-radius: 15px;
-    box-shadow: rgba(149, 157, 165, 0.07) 0px 8px 24px;
-    width: 75%;
-    height: 450px;
-    margin: 0 auto;
+    height: 50%;
     overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
-.image_ab_c{
-    height: 100%;
-}
-
-.about_content_data{
-    width: 60%;
-    overflow-x: hidden;
-    height: 100%;
-}
-
-.about_content_data::-webkit-scrollbar {
-    width: 5px;
-}
-
-/* Track */
-.about_content_data::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
-/* Handle */
-.about_content_data::-webkit-scrollbar-thumb {
-    background: #d5d5d5;
-}
-
-/* Handle on hover */
-.about_content_data::-webkit-scrollbar-thumb:hover {
-    background: #c2c2c2;
-}
-
-.content_title_acd{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.content_title_acd button {
-    background-color: #001433;
-    padding: 10px 30px;
-}
-.content_title_acd button i{
-    font-size: 20px;
-}
-
-@media only screen and (max-width: 650px) {
-    .content_title_acd{
-        display: block;
-    }
-    .content_title_acd button {
-        display: block;
-        margin-top: 15px;
-        width: 100%;
-    }
-}
-
-@media only screen and (max-width: 1362px) {
-    .about_content_data{
-        width: 80%;
-    }
-    .img_fr_ab{
-        width: 20%;
-    }
-    .content_description_Ab{
-        font-size: 20px !important;
-    }
-    .about_content{
-        width: 85%;
-    }
-}
-@media only screen and (max-width: 1092px) {
-    .about_content_data{
-        width: 85%;
-        overflow: auto;
-    }
-    .img_fr_ab{
-        width: 15%;
-    }
-    .content_description_Ab{
-        font-size: 18px !important;
-    }
-}
-
-@media only screen and (max-width: 1150px) {
-    .img_content{
-        right: -50px;
-        opacity: 0.7;
-    }
-}
-@media only screen and (max-width: 1000px) {
-    .img_content{
-        right: -200px;
-        opacity: 0.5;
-    }
-    .data-content{
-        padding: 100px 50px;
-    }
-}
-@media only screen and (max-width: 770px) {
-    .img_content{
-        right: -350px;
-        opacity: 0.3;
-    }
-    .data-content{
-        width: 70%;
-    }
-}
-@media only screen and (max-width: 670px) {
-    .data-content{
-        padding: 50px;
-        width: 70%;
-    }
-}
-
-/*Announces*/
-.announce_container{
-    width: 100%;
-    padding: 10px 0;
-}
-.announce_container_p{
-    font-size: 30px;
-    font-weight: 500;
-    margin: 0;
-}
-.all_anounces{
-    display: grid;
-    grid-template-columns: repeat(3, 31%);
-    gap: 15px;
-    justify-content: space-around;
-    border-radius: 15px;
-    margin-top: 15px;
-}
-.announce_categ{
-    box-shadow: rgba(149, 157, 165, 0.07) 0px 12px 24px;
-}
-@media only screen and (max-width: 850px) {
-    .all_anounces{
-        display: block;
-    }
-    .announce_categ{
-        display: block;
-        width: 100%;
-        padding: 20px;
-    }
-}
-
-.partnership_categ{
-    width: 100%;
-    height: 35vh;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-.partner_main_image{
-    width: 100%;
+.content_description{
     position: absolute;
-    top: 0;
     left: 0;
-    z-index: -2;
+    top: 0;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
 }
-
-@media only screen and (max-width: 450px) {
-    .big-text{
-        font-size: 50px !important;
-    }
+.content img {
+    width: 100%;
 }
-@media only screen and (max-width: 800px) {
-    .about_content_data{
-        font-size: 20px;
-        overflow-x: hidden;
-    }
-    .content_div_fixed_panel    {
-        width: 85% !important;
-    }
-}
-
-body{
-    background-color: #1D1E23;
+.content_description p{
+    margin: 10px;
 }
