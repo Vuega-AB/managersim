@@ -9,6 +9,9 @@ body {
     margin: 0;
     background-color: #090909;
 }
+p{
+    color: black;
+}
 .content{
     width: 30%;
     padding: 30px;
@@ -32,4 +35,10 @@ body {
     .content{
         width: 60%;
     }
+}
+.forgot_password_text{
+    font-size: 15px !important;
+    margin: 5px 0 !important;
+    color: blue;
+    text-align: right !important;
 }
