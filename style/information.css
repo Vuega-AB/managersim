@@ -73,3 +73,18 @@ p{
 .information_title_categ{
     cursor: pointer;
 }
+
+@media only screen and (max-width: 670px) {
+    .the_content_in_the_content_ez{
+        display: block;
+    }
+    .informations{
+        display: block;
+        width: 100%;
+    }
+    .office{
+        display: block;
+        width: 100%;
+        margin-top: 30px;
+    }
+}
