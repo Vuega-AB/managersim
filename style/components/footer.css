@@ -1,7 +1,8 @@
 .footer{
     width: 100%;
     padding: 15px 0;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    color: white;
+    font-family: "Josefin Sans", sans-serif;
 }
 .footer p {
     margin: 0;
@@ -25,6 +26,7 @@
 }
 .fcateg button {
     display: block;
+    background-color: transparent;
     padding: 5px;
     color: cornflowerblue;
 }
