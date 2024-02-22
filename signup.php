@@ -40,7 +40,7 @@
         }
 
         unset($_SESSION["error_required_signup"]);
-    ?> method="post" action="./php/signup.php" class="content default_shadow">
+    ?> method="post" action="./php/User/signup.php" class="content default_shadow">
         <p style="margin: 0; font-size: 30px; margin-bottom: 30px">Sign up</p>
         <input class="default_input" name="email" placeholder="Email" type="email">
         <input type="text" class="default_input" name="password" placeholder="Password">

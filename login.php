@@ -33,15 +33,15 @@
         </div>
     </div>
     <div class="container">
-        <div class="content default_shadow">
+        <form method="post" action="./php/User/login.php" class="content default_shadow">
             <p style="margin: 0; font-size: 30px; margin-bottom: 30px">Login</p>
-            <input class="default_input" placeholder="Email" type="text">
-            <input type="text" class="default_input" placeholder="Password">
+            <input class="default_input" name="email" placeholder="Email" type="text">
+            <input type="text" class="default_input" name="password" placeholder="Password">
 
             <hr>
             <a href="forgot_password.php"><p style="text-align: right">Forgot your password ?</p></a>
             <button class="specific_btn" style="box-sizing: border-box; width: 100%; margin-top: 20px">Submit</button>
-        </div>
+        </form>
     </div>
 
     <div class="footer">
