@@ -1,0 +1,46 @@
+.default_btn{
+    background-color: transparent;
+    border: transparent;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 10px;
+    transition: 0.1s all ease;
+    margin: 0 5px;
+}
+.default_btn:hover{
+    border-bottom: 1px solid white;
+}
+.specific_btn{
+    padding: 20px;
+    background-color: #082032;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.1s all ease;
+}
+.specific_btn:hover{
+    opacity: 0.8;
+}
+
+.default_shadow{
+    box-shadow: rgba(131, 131, 131, 0.2) 0px 1px 5px;
+}
+.default_input{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+    color: white;
+    border: none;
+    background-color: transparent;
+    color: gray;
+}
+
+input:focus{
+    outline: none;
+}
+a{
+    color: inherit;
+    text-decoration: inherit;
+}
