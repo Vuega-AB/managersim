@@ -52,7 +52,7 @@ class UserController extends Controller
                 "password" => $user->pass
             ]));
 
-            return redirect()->route("login")->with("created");
+            return redirect()->route("login")->with("created", "Succesfuly created your account. Check your email for password");
         }
     }
 
