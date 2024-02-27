@@ -24,11 +24,12 @@ class User extends Authenticatable
         "remember_token"
     ];
 
+    protected $primaryKey = "login";
     public $timestamps = false;
 
     public function getAuthIdentifierName()
     {
-        return 'email';
+        return 'login';
     }
 
 }
