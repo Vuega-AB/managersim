@@ -53,7 +53,8 @@ class SendPasswordMail extends Mailable
         return $this->view('EmailMessages.ClassInvitations', [
             "from" => $this->data["from"],
             "name" => $this->data["name"],
-            "password" => $this->data["password"]
+            "password" => $this->data["password"],
+            "reason" => $this->data["reason"]
         ])
             ->subject('This is your password')
             ->from($this->data["from"]);

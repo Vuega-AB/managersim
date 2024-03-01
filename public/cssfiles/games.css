@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    background-color: #0C0C10;
+    font-family: "Josefin Sans", sans-serif;
+}
+.container{
+    width: 100%;
+    min-height: 60vh;
+    padding: 0 0 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.img_cont{
+    width: 100%;
+}
+.content{
+    width: 70%;
+    padding: 20px;
+    display: grid;
+    justify-content: center !important;
+    gap: 20px;
+}
+.game_categ{
+    color: white;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    margin: 0 auto;
+    cursor: pointer;
+}
+.game_categ img{
+    width: 100%;
+}
+.game_id{
+    width: 100% !important;
+    background-color: #718096;
+    padding: 15px 0;
+}
+.game_id p{
+    margin: 0;
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+}
+.game_categ:hover{
+    opacity: 0.9;
+}

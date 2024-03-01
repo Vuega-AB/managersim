@@ -25,6 +25,9 @@ class UserController extends Controller
     public function register(){
         return $this->auth('register');
     }
+    public function forgot_password_to_route(){
+        return $this->auth("forgotPassword");
+    }
 
 
     public function signup_user(Request $request){
@@ -49,11 +52,32 @@ class UserController extends Controller
             Mail::to($user->email)->send(new SendPasswordMail([
                 "from" => env("MAIL_USERNAME"),
                 "name" => $request->name,
-                "password" => $user->pass
+                "password" => $user->pass,
+                "reason" => "You have created an account on managersim. Log in using the password below."
             ]));
 
             return redirect()->route("login")->with("created", "Succesfuly created your account. Check your email for password");
         }
+    }
+
+    public function forgot_password(Request $request){
+        $request->validate([
+            "email" => "required"
+        ]);
+
+        $userFromEmail = User::where("email", $request->email)->first();
+        if(!$userFromEmail){
+            return redirect()->back()->with("A user with this email was not found.");
+        }
+
+        Mail::to($request->email)->send(new SendPasswordMail([
+            "from" => env("MAIL_USERNAME"),
+            "name" => $userFromEmail->realname,
+            "password" => $userFromEmail->pass,
+            "reason" => "Forgot your password? Your password is:"
+        ]));
+
+        return redirect()->back()->with("succesfuly", "We sent you your current password on gmail. Check it and log in");
     }
 
     public function login_user(Request $request){

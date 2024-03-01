@@ -18,7 +18,7 @@
     .header_p{
         font-family: "Josefin Sans", sans-serif;
         font-weight: bold;
-        font-size: 35px;
+        font-size: 30px;
         margin: 0;
         color: white;
         margin-left: 20px;

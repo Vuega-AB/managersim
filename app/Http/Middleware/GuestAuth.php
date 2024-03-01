@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class Authenticate
+class GuestAuth
 {
     /**
      * Handle an incoming request.
@@ -15,8 +15,8 @@ class Authenticate
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!auth()->user()){
-            return redirect()->route("login");
+        if (auth()->user()){
+            return redirect()->route("welcome");
         }
         return $next($request);
     }
