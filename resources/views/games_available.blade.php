@@ -19,11 +19,17 @@
         @if(count($games) > 0)
             <div class="content" style="grid-template-columns: repeat(@if(count($games) <= 2) 2 @else 3 @endif, 33%);">
                 @foreach($games as $game)
-                    <div class="game_categ default_shadow">
-                        <div class="game_id">
-                            <p>{{ ucwords($game->gameid) }}</p>
+                    <a href="{{ route("games.info", $game->gameid) }}">
+                        <div class="game_categ default_shadow">
+                            <div class="game_id">
+                                <p>{{ ucwords($game->gameid) }}</p>
+                            </div>
+
+                            <div style="padding: 5px 0">
+                                <p class="description_game">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, minus.</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
             </div>
         @else
@@ -31,5 +37,7 @@
         @endif
     </div>
     @include("Elements.footer")
+
+    <script src="https://kit.fontawesome.com/1d101e268c.js" crossorigin="anonymous"></script>
 </body>
 </html>

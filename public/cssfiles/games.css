@@ -1,8 +1,4 @@
-body {
-    margin: 0;
-    background-color: #0C0C10;
-    font-family: "Josefin Sans", sans-serif;
-}
+
 .container{
     width: 100%;
     min-height: 60vh;
@@ -24,10 +20,11 @@ body {
 .game_categ{
     color: white;
     width: 100%;
-    height: 300px;
+    min-height: 190px;
     overflow: hidden;
     margin: 0 auto;
     cursor: pointer;
+    padding: 0 0 10px 0;
 }
 .game_categ img{
     width: 100%;
@@ -45,4 +42,24 @@ body {
 }
 .game_categ:hover{
     opacity: 0.9;
+}
+@media only screen and (max-width: 990px) {
+    .content{
+        width: 85%;
+    }
+}
+@media only screen and (max-width: 720px) {
+    .content{
+        display: block;
+        width: 70%;
+    }
+    .game_categ{
+        width: 100%;
+        margin-top: 20px;
+    }
+}
+.description_game{
+    font-size: 20px;
+    text-align: center;
+
 }

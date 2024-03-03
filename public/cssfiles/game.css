@@ -1,0 +1,73 @@
+.container_game{
+    width: 100%;
+    min-height: 75vh;
+    padding: 50px 0;
+}
+.content_game{
+    width: 70%;
+    height: 100%;
+    margin: 0 auto;
+}
+.image_content_game{
+    overflow: hidden;
+    width: 100%;
+    height: 150px;
+    margin: 15px 0;
+    position: relative;
+}
+
+.image_content_game img{
+    width: 100%;
+}
+.gameIdP{
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    position: absolute;
+    right: 10px;
+    margin: 0;
+    top: 10px;
+    font-style: italic;
+}
+.information_game{
+    width: 100%;
+    box-shadow: 0 0 1px white;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-top: 40px;
+}
+.information_game_title{
+    font-size: 25px;
+    margin: 0;
+    font-weight: bold;
+    color: white;
+}
+.information_game_description{
+    margin: 0;
+    color: #b6b6b6;
+    margin-top: 15px;
+    font-size: 20px;
+}
+.information_game hr{
+    margin: 25px 0;
+    opacity: 0.5;
+}
+@media only screen and (max-width: 600px) {
+    .content_game{
+        width: 85%;
+    }
+}
+.button_enter_office{
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+    padding: 15px;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: "Josefin Sans", sans-serif;
+
+    cursor: pointer;
+    border: none;
+    background-color: #0087ff;
+    color: white;
+}

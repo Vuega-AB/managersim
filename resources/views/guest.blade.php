@@ -27,6 +27,6 @@
             @break
     @endswitch
     @include("Elements.footer")
-<script src="https://kit.fontawesome.com/1d101e268c.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/1d101e268c.js" crossorigin="anonymous"></script>
 </body>
 </html>
