@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ env("APP_NAME") }} | Available Games</title>
+    <title>{{ env("APP_NAME") }} | {{ $title }}</title>
 
     <link rel="stylesheet" href="{{ asset("cssfiles/games.css") }}">
     <link rel="stylesheet" href="{{ asset("cssfiles/assests.css") }}">
@@ -17,7 +17,7 @@
     @include("Elements.header")
     <div class="container">
         @if(count($games) > 0)
-            <div class="content" style="grid-template-columns: repeat(@if(count($games) <= 2) 2 @else 3 @endif, 33%);">
+            <div class="content" style="grid-template-columns: repeat(@if(count($games) <= 2) {{ count($games) }} @else 3 @endif, 33%);">
                 @foreach($games as $game)
                     <a href="{{ route("games.info", $game[0]) }}">
                         <div class="game_categ default_shadow">
@@ -28,7 +28,9 @@
                             <div style="padding: 5px 0">
                                 <p class="description_game">{{ $game["information"]["longdescription"] }}</p>
 
-                                <p class="description_game" style="color: gray; font-size: 15px">{{ $game["information"]["shortdescription"] }}</p>
+                                <div style="display: flex; justify-content: center; align-items: center">
+                                    <p class="description_game" style="color: #a2a2a2; font-size: 15px; width: 75%">{{ $game["information"]["shortdescription"] }}</p>
+                                </div>
                             </div>
                         </div>
                     </a>

@@ -24,8 +24,10 @@ class User extends Authenticatable
         "remember_token"
     ];
 
-    protected $primaryKey = "login";
+//    protected $primaryKey = "login";
     public $timestamps = false;
+
+    public $incrementing = false;
 
     public function getAuthIdentifierName()
     {

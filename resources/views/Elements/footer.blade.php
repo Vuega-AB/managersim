@@ -40,6 +40,7 @@
     .footer{
         width: 100%;
         padding: 15px 0;
+        background-color: #111111;
         color: white;
         font-family: "Josefin Sans", sans-serif;
     }

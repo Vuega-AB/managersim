@@ -33,7 +33,9 @@ Route::middleware('guest')->group(function (){
 
 Route::middleware('auth')->group(function (){
    Route::prefix("/games")->group(function (){
-       Route::get("/available", [\App\Http\Controllers\Games::class, "index"])->name("AvailableGames");
+       Route::get("/available", [\App\Http\Controllers\Games::class, "index"])->name("games.available");
+       Route::get("/my-games", [\App\Http\Controllers\Games::class, "my_games"])->name("games.my");
        Route::get("/{name}", [\App\Http\Controllers\Games::class, "specific_game"])->name("games.info");
+       Route::get("/join/{gameid}", [\App\Http\Controllers\Games::class, "join"])->name("game.join");
    });
 });
