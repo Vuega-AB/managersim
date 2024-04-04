@@ -11,6 +11,9 @@
 .default_btn:hover{
     border-bottom: 3px solid white;
 }
+body{
+    overflow-x: hidden;
+}
 .specific_btn{
     padding: 20px;
     background-color: #0087ff;

@@ -11,20 +11,27 @@
     <link rel="stylesheet" href="{{ asset("cssfiles/assests.css") }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+          rel="stylesheet">
 </head>
 <body>
-    @include("Elements.header")
-    @include("GameDashboard.Elements.head")
+@include("Elements.header")
+@include("GameDashboard.Elements.head")
 
-    @switch($type)
-        @case("index")
-            @include("GameDashboard.Pages.welcome")
+@switch($type)
+    @case("index")
+        @include("GameDashboard.Pages.welcome")
         @break
-    @endswitch
+    @case("map")
+        @include("GameDashboard.Pages.map")
+        @break
+    @case("listing_teams")
+        @include("GameDashboard.Pages.Teams.teams_listing")
+        @break
+@endswitch
 
-    @include("Elements.footer")
+@include("Elements.footer")
 
-    <script src="https://kit.fontawesome.com/1d101e268c.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/1d101e268c.js" crossorigin="anonymous"></script>
 </body>
 </html>

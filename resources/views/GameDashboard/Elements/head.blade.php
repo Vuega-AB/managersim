@@ -1,6 +1,6 @@
 <div class="head_class">
     <div style="width: 80%; padding: 0 10px; margin: 0 auto;" class="images-head">
-        <a href=""><img src="{{ asset("game_btns/board.png") }}" alt="Board room"></a>
+        <a href="{{ route("game.join", $game['id']) }}"><img src="{{ asset("game_btns/board.png") }}" alt="Board room"></a>
         <a href=""><img src="{{ asset("game_btns/team.png") }}" alt="Squad"></a>
         <a href=""><img src="{{ asset("game_btns/tactics.png") }}" alt="Tactics"></a>
         <a href=""><img src="{{ asset("game_btns/train.png") }}" alt="Staff"></a>
@@ -18,8 +18,22 @@
         <a href=""><img src="{{ asset("game_btns/options.png") }}" alt="Personal information"></a>
     </div>
 </div>
+@if(isset($game_header) && $game_header == true)
+    <div style="width: 60%; margin: 0 auto !important;" class="where_info">
+        <a href="{{ route("games.manage.map", $game["id"]) }}"><p>Map</p></a>
+        <p></p>
+    </div>
+@endif
 
 <style>
+    .where_info{
+        color: white;
+    }
+    .where_info p{
+        margin: 0;
+        font-size: 13px;
+        text-decoration: underline;
+    }
     .head_class{
         width: 100%;
         padding: 30px 0;

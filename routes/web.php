@@ -37,5 +37,10 @@ Route::middleware('auth')->group(function (){
        Route::get("/my-games", [\App\Http\Controllers\Games::class, "my_games"])->name("games.my");
        Route::get("/{name}", [\App\Http\Controllers\Games::class, "specific_game"])->name("games.info");
        Route::get("/join/{gameid}", [\App\Http\Controllers\Games::class, "join"])->name("game.join");
+
+       Route::prefix("/manage/{gameid}")->group(function (){
+           Route::get("/map", [\App\Http\Controllers\Games::class, "map_game"])->name("games.manage.map");
+           Route::get("/teams/{country_id}", [\App\Http\Controllers\Games::class, "view_teams_specific_country"])->name("games.manage.country.teams");
+       });
    });
 });

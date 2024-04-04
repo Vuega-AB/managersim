@@ -13,6 +13,9 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Games extends Controller
 {
+
+    private $db_startup = "manager_";
+
     public function index(){
         $games = $this->get_av_games();
         return view("games_available", [
@@ -112,10 +115,11 @@ class Games extends Controller
             $newCG->save();
         }
 
+        session()->put("gameid_in", $gameid);
 //        Update / Create in manager_{game} -> humanplayers
-        $hP = DB::connection("manager_" . $gameid)->table("humanplayers")->where("login", \auth()->user()->login)->first();
+        $hP = DB::connection($this->db_startup . $gameid)->table("humanplayers")->where("login", \auth()->user()->login)->first();
         if (!$hP){
-            DB::connection("manager_" . $gameid)->table("humanplayers")->insert([
+            DB::connection($this->db_startup . $gameid)->table("humanplayers")->insert([
                 "login" => \auth()->user()->login,
                 "pass" => \auth()->user()->pass,
                 "realname" => \auth()->user()->realname,
@@ -125,18 +129,67 @@ class Games extends Controller
             ]);
         }
 
+//        DB::connection("managersim_challenge1");
+
 //        Get game information
-        $information = GameInfo::where("gameid", $game->gameid)->first();
+        $data = $this->get_game_information($gameid);
+        return view("GameDashboard.index", [
+            "game" => [
+                "data" => $data,
+                "id" => $gameid
+            ],
+            "with_up_header" => false,
+            "type" => "index",
+            "game_header" => true
+        ]);
+    }
+
+    private function get_game_information($game_id){
+        //        Get game information
+        $information = GameInfo::where("gameid", $game_id)->first();
         if (!$information){
             throw new NotFoundHttpException();
         }
         $data = $this->parse($information->fixedinfo);
+
+        return $data;
+    }
+
+
+//    Map
+    public function map_game($gameid){
+        if (!session()->has("gameid_in") || session()->get("gameid_in") !== $gameid){
+            return redirect()->route("games.my");
+        }
+//        Get game information
+        $data = $this->get_game_information($gameid);
         return view("GameDashboard.index", [
             "game" => [
-                "data" => $data
+                "data" => $data,
+                "id" => $gameid
             ],
             "with_up_header" => false,
-            "type" => "index"
+            "type" => "map",
+            "game_header" => false
+        ]);
+    }
+//    View country teams
+    public function view_teams_specific_country($gameid, $country_id){
+        if (!session()->has("gameid_in") || session()->get("gameid_in") !== $gameid){
+            return redirect()->route("games.my");
+        }
+//        Get Teams
+        $data = $this->get_game_information($gameid);
+        $teams = DB::connection($this->db_startup . $gameid)->table("teams")->where("countryid", $country_id)->get();
+        return view("GameDashboard.index", [
+            "game" => [
+                "data" => $data,
+                "id" => $gameid
+            ],
+            "with_up_header" => false,
+            "type" => "listing_teams",
+            "game_header" => true,
+            "teams" => $teams
         ]);
     }
 }
