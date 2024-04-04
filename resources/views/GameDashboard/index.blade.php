@@ -28,6 +28,9 @@
     @case("listing_teams")
         @include("GameDashboard.Pages.Teams.teams_listing")
         @break
+    @case("team_information")
+        @include("GameDashboard.Pages.Teams.team_information")
+        @break
 @endswitch
 
 @include("Elements.footer")

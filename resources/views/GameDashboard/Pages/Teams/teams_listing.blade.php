@@ -14,11 +14,29 @@
         </tr>
         @if(count($teams) > 0)
             @foreach($teams as $key => $team)
+                @php
+//                Get league id
+                    $leagueID = \Illuminate\Support\Facades\DB::connection(env("DB_STARTUP") . $game['id'])->table("leagues")->where("countryid", $country_id)->first();
+                    if ($leagueID){
+                        $fixtures = \Illuminate\Support\Facades\DB::connection(env("DB_STARTUP") . $game['id'])->table("fixtures")->where("leagueid", $leagueID->id)->where("hometeamid", $team->id)->orWhere('awayteamid', $team->id)->where("fixturetype", 0)->get();
+                    }
+                @endphp
                 <tr>
                     <td>{{ $key+1 }}</td>
-                    <td>{{ $team->name }}</td>
+                    <td>
+                        <a href="{{ route('games.manage.teams.information', [$game['id'], $team->id]) }}">
+                            {{ $team->name }}
+                        </a>
+                    </td>
+                    @if(isset($fixtures))
+                        <td>{{ count($fixtures) }}</td>
+                        <td>{{ $fixtures->where("winamount", 1)->count() }}</td>
+                        <td>{{ $fixtures->where("evenamount", 1)->count() }}</td>
+                        <td>{{ $fixtures->where("looseamount", 1)->count() }}</td>
+                    @endif
                 </tr>
             @endforeach
+        @else
         @endif
     </table>
 </div>
@@ -27,6 +45,7 @@
     .teams_container{
         width: 50%;
         margin: 20px auto;
+        min-height: 50vh;
         padding: 0 0 20px 0;
     }
     .teams_container table{
@@ -35,6 +54,10 @@
         text-align: center;
     }
     .teams_container table td {
-        padding: 5px 0;
+        padding: 7px 0;
+        cursor: pointer;
+    }
+    .teams_container table td:hover{
+        background-color: rgba(128, 128, 128, 0.3);
     }
 </style>
