@@ -42,7 +42,10 @@ Route::middleware('auth')->group(function (){
            Route::get("/map", [\App\Http\Controllers\Games::class, "map_game"])->name("games.manage.map");
            Route::prefix("/teams")->group(function (){
                Route::get("/{country_id}", [\App\Http\Controllers\TeamsController::class, "view_teams_specific_country"])->name("games.manage.country.teams");
-               Route::get("/information/{team_id}", [\App\Http\Controllers\TeamsController::class, "specific_team_information"])->name("games.manage.teams.information");
+               Route::prefix("{team_id}/")->group(function (){
+                   Route::get("/information", [\App\Http\Controllers\TeamsController::class, "specific_team_information"])->name("games.manage.teams.information");
+                   Route::get("/fixtures", [\App\Http\Controllers\TeamsController::class, "specific_team_fixtures"])->name("games.manage.teams.fixtures");
+               });
            });
        });
    });

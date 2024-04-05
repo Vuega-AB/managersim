@@ -19,6 +19,19 @@
                     $leagueID = \Illuminate\Support\Facades\DB::connection(env("DB_STARTUP") . $game['id'])->table("leagues")->where("countryid", $country_id)->first();
                     if ($leagueID){
                         $fixtures = \Illuminate\Support\Facades\DB::connection(env("DB_STARTUP") . $game['id'])->table("fixtures")->where("leagueid", $leagueID->id)->where("hometeamid", $team->id)->orWhere('awayteamid', $team->id)->where("fixturetype", 0)->get();
+//                        Calc points
+                        $points = 0;
+                        $wins = 0;
+                        $losses = 0;
+                        $draws = 0;
+                        $games = 0;
+                        foreach($fixtures as $fixture){
+                            $points += $fixture->hometeamscore;
+                            $wins += $fixture->winamount;
+                            $losses += $fixture->looseamount;
+                            $draws += $fixture->evenamount;
+                            $games += $fixture->played;
+                        }
                     }
                 @endphp
                 <tr>
@@ -29,10 +42,13 @@
                         </a>
                     </td>
                     @if(isset($fixtures))
-                        <td>{{ count($fixtures) }}</td>
-                        <td>{{ $fixtures->where("winamount", 1)->count() }}</td>
-                        <td>{{ $fixtures->where("evenamount", 1)->count() }}</td>
-                        <td>{{ $fixtures->where("looseamount", 1)->count() }}</td>
+                        <td>{{ $games }}</td>
+                        <td>{{ $wins }}</td>
+                        <td>{{ $draws }}</td>
+                        <td>{{ $losses }}</td>
+                        <td></td>
+                        <td></td>
+                        <td>@if(isset($points)) {{ $points }} @else 0 @endif</td>
                     @endif
                 </tr>
             @endforeach

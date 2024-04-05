@@ -4,10 +4,27 @@
         <div class="title">
             <p>{{ $team_data[0]->name }}</p>
         </div>
+        @include("GameDashboard.Pages.Teams.Elements.header_team")
+        @switch($team_type)
+            @case("")
+                <div class="information">
+                    @if(empty($team_data[0]->humanplayerid))
+                        <p style="font-size: 20px; font-weight: bold">Has no manager and is looking for one</p>
+                    @endif
+                </div>
+                @break;
+            @case("fixtures")
+                @include("GameDashboard.Pages.Teams.fixtures")
+                @break;
+        @endswitch
     </div>
 </div>
 
 <style>
+    .information{
+        color: white;
+        padding: 10px 20px;
+    }
     .team_information{
         width: 50%;
         min-height: 50vh;

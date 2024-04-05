@@ -1,5 +1,5 @@
 <div class="map_container">
-    <div id="MenuLayer" name="MenuLayer" style="position:relative; left: 0px; top: 30px; width: 830px; height: 730px; z-index:20">
+    <div id="MenuLayer" name="MenuLayer" style="position:relative; left: 0px; top: 0; width: 830px; height: 730px; z-index:20">
         <div id="BgPatternLayer" name="BgPatternLayer" style="position:relative; width:1600px; height:1050px; z-index:1; left: -350px; top: -80px; border: 0px none #000000; z-index: 1"></div>
         <div id="BgImageLayer" name="BgImageLayer" style="position:absolute; width:830px; height:730px; z-index:2; left: -10px; top: -14px">
             <table cellpadding="0" cellspacing="0"><tbody><tr><td height="13"><table cellspacing="0" cellpadding="0" height="13" border="0"><tbody><tr><td valign="top" width="15" height="13"></td><td width="800" height="13" background="/images/fb_tile.gif" valign="top"></td><td valign="top" width="15" height="13"></td></tr></tbody></table></td></tr><tr><td valign="top" height="700" width="800" background="/images/fb_tile.gif" align="center"><table cellspacing="0" cellpadding="0" width="800" height="700" border="0"><tbody><tr><td width="15" height="439" valign="top"></td><td valign="top" width="800" height="700"> <img name="BgImage" src="{{ asset("images/map30.png") }}" width="800" height="700" usemap="#BgImageMap" border="0">
@@ -14,6 +14,7 @@
         margin: 0 auto;
         padding: 0 0 50px 0;
         display: flex;
+        font-size: 12px;
         justify-content: center;
     }
     .map_container img{
