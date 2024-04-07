@@ -1,8 +1,8 @@
 <div class="header_team">
     <a href="{{ route('games.manage.teams.fixtures', [$game['id'], $team_data[0]->id]) }}"><p>Fixtures</p></a>
-    <p>Players</p>
+    <a href="{{ route("games.manage.teams.players", [$game['id'], $team_data[0]->id]) }}"><p>Players</p></a>
     <a href="{{ route("games.manage.teams.information", [$game['id'], $team_data[0]->id]) }}"><p>Info</p></a>
-    <p>Staff</p>
+    <a href="{{ route("games.manage.teams.staff", [$game['id'], $team_data[0]->id]) }}"><p>Staff</p></a>
 </div>
 
 <style>

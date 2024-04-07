@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class TeamsController extends Controller
@@ -32,7 +33,7 @@ class TeamsController extends Controller
         ]);
     }
 
-    public function specific_team_information($gameid, $teamid) {
+    public function team_cat_redirect($gameid, $teamid){
         if (!session()->has("gameid_in") || session()->get("gameid_in") !== $gameid){
             return redirect()->route("games.my");
         }
@@ -42,35 +43,27 @@ class TeamsController extends Controller
             throw new NotFoundHttpException();
         }
 
-        $game = new Games();
-//        Get Teams
-        $data = $game->get_game_information($gameid);
-        return view("GameDashboard.index", [
-            "game" => [
-                "data" => $data,
-                "id" => $gameid
-            ],
-            "with_up_header" => false,
-            "type" => "team_information",
-            "game_header" => true,
-            "team_type" => "",
-            "team_data" => [
-                $the_team
-            ]
-        ]);
-    }
-    public function specific_team_fixtures($gameid, $teamid){
-        if (!session()->has("gameid_in") || session()->get("gameid_in") !== $gameid){
-            return redirect()->route("games.my");
-        }
+        $rname = Route::currentRouteName();
+        $rname = str_replace("games.manage.teams.", "", $rname);
+        $the_type = null;
+        switch ($rname){
+            case "fixtures":
+                $the_type = DB::connection(env("DB_STARTUP") . $gameid)->table("fixtures")->where("hometeamid", $teamid)->orWhere("awayteamid", $teamid)->get();
+                break;
+            case "information":
+                $rname = "";
+                break;
+            case "players":
 
-        $the_team = DB::connection(env("DB_STARTUP") . $gameid)->table("teams")->where("id", $teamid)->first();
-        if (!$the_team){
-            throw new NotFoundHttpException();
-        }
-        $fixtures = DB::connection(env("DB_STARTUP") . $gameid)->table("fixtures")->where("hometeamid", $teamid)->orWhere("awayteamid", $teamid)->get();
-        if (!$fixtures){
-            throw new NotFoundHttpException();
+                $the_type = DB::connection(env("DB_STARTUP") . $gameid)
+                            ->table("players")->where("teamid", $the_team->id)
+                            ->get();
+                break;
+            case "staff":
+                $the_type = DB::connection(env("DB_STARTUP") . $gameid)
+                    ->table("employees")->where("teamid", $the_team->id)
+                    ->get();
+                break;
         }
 
         $game = new Games();
@@ -85,10 +78,10 @@ class TeamsController extends Controller
             "with_up_header" => false,
             "type" => "team_information",
             "game_header" => true,
-            "team_type" => "fixtures",
+                "team_type" => $rname,
             "team_data" => [
                 $the_team,
-                $fixtures
+                $the_type
             ]
         ]);
     }

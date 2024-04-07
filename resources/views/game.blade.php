@@ -20,7 +20,7 @@
             <div class="image_content_game">
                 <img src="https://wallpaperbat.com/img/63242-football-wallpaper-hd.jpg" alt="">
                 <p class="gameIdP">{{ \Illuminate\Support\Str::upper(ucwords($game->gameid)) }}</p>
-                <a href="{{ route("game.join", $game->gameid) }}"><button class="button_enter_office">ENTER OFFICE</button></a>
+                <a href="{{ route("games.join", $game->gameid) }}"><button class="button_enter_office">ENTER OFFICE</button></a>
             </div>
 
             <div class="information_game">

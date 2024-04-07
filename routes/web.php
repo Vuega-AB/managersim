@@ -31,20 +31,22 @@ Route::middleware('guest')->group(function (){
 
 });
 
-Route::middleware('auth')->group(function (){
+Route::middleware('auth')->name("games.")->group(function (){
    Route::prefix("/games")->group(function (){
-       Route::get("/available", [\App\Http\Controllers\Games::class, "index"])->name("games.available");
-       Route::get("/my-games", [\App\Http\Controllers\Games::class, "my_games"])->name("games.my");
-       Route::get("/{name}", [\App\Http\Controllers\Games::class, "specific_game"])->name("games.info");
-       Route::get("/join/{gameid}", [\App\Http\Controllers\Games::class, "join"])->name("game.join");
+       Route::get("/available", [\App\Http\Controllers\Games::class, "index"])->name("available");
+       Route::get("/my-games", [\App\Http\Controllers\Games::class, "my_games"])->name("my");
+       Route::get("/{name}", [\App\Http\Controllers\Games::class, "specific_game"])->name("info");
+       Route::get("/join/{gameid}", [\App\Http\Controllers\Games::class, "join"])->name("join");
 
-       Route::prefix("/manage/{gameid}")->group(function (){
-           Route::get("/map", [\App\Http\Controllers\Games::class, "map_game"])->name("games.manage.map");
+       Route::prefix("/manage/{gameid}")->name("manage.")->group(function (){
+           Route::get("/map", [\App\Http\Controllers\Games::class, "map_game"])->name("map");
            Route::prefix("/teams")->group(function (){
-               Route::get("/{country_id}", [\App\Http\Controllers\TeamsController::class, "view_teams_specific_country"])->name("games.manage.country.teams");
-               Route::prefix("{team_id}/")->group(function (){
-                   Route::get("/information", [\App\Http\Controllers\TeamsController::class, "specific_team_information"])->name("games.manage.teams.information");
-                   Route::get("/fixtures", [\App\Http\Controllers\TeamsController::class, "specific_team_fixtures"])->name("games.manage.teams.fixtures");
+               Route::get("/{country_id}", [\App\Http\Controllers\TeamsController::class, "view_teams_specific_country"])->name("country.teams");
+               Route::prefix("{team_id}/")->name("teams.")->group(function (){
+                   Route::get("/information", [\App\Http\Controllers\TeamsController::class, "team_cat_redirect"])->name("information");
+                   Route::get("/fixtures", [\App\Http\Controllers\TeamsController::class, "team_cat_redirect"])->name("fixtures");
+                   Route::get("/players", [\App\Http\Controllers\TeamsController::class, "team_cat_redirect"])->name("players");
+                   Route::get("/staff", [\App\Http\Controllers\TeamsController::class, "team_cat_redirect"])->name("staff");
                });
            });
        });

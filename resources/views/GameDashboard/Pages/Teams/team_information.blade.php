@@ -1,5 +1,5 @@
 <div class="team_information">
-    <hr style="margin: 30px 0">
+    <hr style="margin: 10px 0">
     <div class="team_data">
         <div class="title">
             <p>{{ $team_data[0]->name }}</p>
@@ -8,14 +8,22 @@
         @switch($team_type)
             @case("")
                 <div class="information">
-                    @if(empty($team_data[0]->humanplayerid))
+                    @if($team_data[0]->humanplayerid == "")
                         <p style="font-size: 20px; font-weight: bold">Has no manager and is looking for one</p>
+                    @else
+                        <p>{{ $team_data[0]->humanplayerid }}</p>
                     @endif
                 </div>
                 @break;
             @case("fixtures")
                 @include("GameDashboard.Pages.Teams.fixtures")
                 @break;
+            @case("players")
+                @include("GameDashboard.Pages.Teams.players")
+                @break
+            @case("staff")
+                @include("GameDashboard.Pages.Teams.staff")
+                @break
         @endswitch
     </div>
 </div>
@@ -26,7 +34,7 @@
         padding: 10px 20px;
     }
     .team_information{
-        width: 50%;
+        width: 60%;
         min-height: 50vh;
         padding: 20px 0;
         margin: 0 auto;

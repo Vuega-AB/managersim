@@ -40,6 +40,7 @@
     }
     .fixtures_container{
         color: white;
+        overflow: hidden;
     }
     .fixtures_container table {
         width: 100%;

@@ -1,6 +1,6 @@
 <div class="head_class">
     <div style="width: 80%; padding: 0 10px; margin: 0 auto;" class="images-head">
-        <a href="{{ route("game.join", $game['id']) }}"><img src="{{ asset("game_btns/board.png") }}" alt="Board room"></a>
+        <a href="{{ route("games.join", $game['id']) }}"><img src="{{ asset("game_btns/board.png") }}" alt="Board room"></a>
         <a href=""><img src="{{ asset("game_btns/team.png") }}" alt="Squad"></a>
         <a href=""><img src="{{ asset("game_btns/tactics.png") }}" alt="Tactics"></a>
         <a href=""><img src="{{ asset("game_btns/train.png") }}" alt="Staff"></a>
