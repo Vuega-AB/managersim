@@ -9,9 +9,14 @@
             @case("")
                 <div class="information">
                     @if($team_data[0]->humanplayerid == "")
-                        <p style="font-size: 20px; font-weight: bold">Has no manager and is looking for one</p>
+                        <form method="post" action="{{ route('games.manage.teams.jobs.apply', [$game['id'], $team_data[0]->id]) }}" style="display: flex; justify-content: space-between; margin-top: 20px; align-items: center">
+                            @csrf
+                            <p style="font-size: 20px; font-weight: bold">Has no manager and is looking for one</p>
+
+                            <button class="specific_btn" style="background-color: #666666">Send Job Application</button>
+                        </form>
                     @else
-                        <p>{{ $team_data[0]->humanplayerid }}</p>
+                        <p style="font-size: 20px; font-weight: bold">Already has a manager</p>
                     @endif
                 </div>
                 @break;

@@ -47,6 +47,10 @@ Route::middleware('auth')->name("games.")->group(function (){
                    Route::get("/fixtures", [\App\Http\Controllers\TeamsController::class, "team_cat_redirect"])->name("fixtures");
                    Route::get("/players", [\App\Http\Controllers\TeamsController::class, "team_cat_redirect"])->name("players");
                    Route::get("/staff", [\App\Http\Controllers\TeamsController::class, "team_cat_redirect"])->name("staff");
+
+                   Route::prefix("/jobs/")->name("jobs.")->group(function (){
+                      Route::post("/apply", [\App\Http\Controllers\TeamsController::class, "apply_for_job"])->name("apply");
+                   });
                });
            });
        });

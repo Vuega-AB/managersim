@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -18,8 +19,9 @@ class TeamsController extends Controller
 //        Get Teams
         $data = $game->get_game_information($gameid);
 //        Get fixtures foreach team
-        $teams = DB::connection(env("DB_STARTUP") . $gameid)->table("teams")->where("countryid", $country_id)->where("name", "!=", "[LID:2822][/LID]")->get();
+        $teams = DB::connection(env("DB_STARTUP") . $gameid)->table("teams")->where("countryid", $country_id)->get();
 
+        $teams->shift();
         return view("GameDashboard.index", [
             "game" => [
                 "data" => $data,
@@ -84,5 +86,34 @@ class TeamsController extends Controller
                 $the_type
             ]
         ]);
+    }
+
+    public function apply_for_job($gameid, $teamid){
+        if (!session()->has("gameid_in") || session()->get("gameid_in") !== $gameid){
+            return redirect()->route("games.my");
+        }
+
+        $the_team = DB::connection(env("DB_STARTUP") . $gameid)->table("teams")->where("id", $teamid)->first();
+        if (!$the_team){
+            throw new NotFoundHttpException();
+        }
+
+        $game = new Games();
+//        Get Teams
+        $data = $game->get_game_information($gameid);
+
+        if($the_team->humanplayerid == ""){
+//            Has No MANAGER
+            DB::connection(env("DB_STARTUP") . $gameid)->table("applications")->insert([
+                "teamid" => $the_team->id,
+                "login" => Auth::user()->login
+            ]);
+
+            DB::connection(env("DB_STARTUP") . $gameid)
+                ->table("teams")
+                ->where("id", $teamid)->update(["humanplayerid" => \auth()->user()->login]);
+        }
+
+        return redirect()->back();
     }
 }
