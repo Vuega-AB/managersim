@@ -27,7 +27,11 @@
                     $restOfName = implode(' ', array_slice($nameParts, 1));
                     $newName = $firstInitial . '. ' . $restOfName;
                 @endphp
-                <td>{{ $newName }}</td>
+                <td>
+                    <a href="{{ route("games.manage.player.info", [$game['id'], $player->id]) }}">
+                        {{ $newName }}
+                    </a>
+                </td>
                 <td>{{ $player->pos }}</td>
                 <td>{{ $player->side }}</td>
                 <td>{{ $player->current_keep }}</td>

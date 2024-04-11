@@ -31,6 +31,9 @@
     @case("team_information")
         @include("GameDashboard.Pages.Teams.team_information")
         @break
+    @case("player_info")
+        @include("GameDashboard.Pages.player_info")
+        @break;
 @endswitch
 
 @include("Elements.footer")

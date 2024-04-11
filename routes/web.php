@@ -52,6 +52,8 @@ Route::middleware('auth')->name("games.")->group(function (){
                       Route::post("/apply", [\App\Http\Controllers\TeamsController::class, "apply_for_job"])->name("apply");
                    });
                });
+
+               Route::get("/player-info/{player}", [\App\Http\Controllers\TeamsController::class, "player_info"])->name("player.info");
            });
        });
    });

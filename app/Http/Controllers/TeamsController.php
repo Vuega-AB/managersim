@@ -116,4 +116,41 @@ class TeamsController extends Controller
 
         return redirect()->back();
     }
+
+    public function player_info($gameid, $player){
+        if (!session()->has("gameid_in") || session()->get("gameid_in") !== $gameid){
+            return redirect()->route("games.my");
+        }
+
+        $game = new Games();
+//        Get Teams
+        $data = $game->get_game_information($gameid);
+
+//        Get the player
+        $player = DB::connection(env("DB_STARTUP") . $gameid)
+            ->table("players")->where("id", $player)
+            ->first();
+        if (!$player){
+            throw new NotFoundHttpException();
+        }
+
+        $fromTeam = DB::connection(env("DB_STARTUP") . $gameid)
+            ->table("teams")->where("id", $player->teamid)
+            ->first();
+        if (!$fromTeam){
+            throw new NotFoundHttpException();
+        }
+
+        return view("GameDashboard.index", [
+            "game" => [
+                "data" => $data,
+                "id" => $gameid
+            ],
+            "with_up_header" => false,
+            "type" => "player_info",
+            "game_header" => true,
+            "player" => $player,
+            "team" => $fromTeam
+        ]);
+    }
 }
