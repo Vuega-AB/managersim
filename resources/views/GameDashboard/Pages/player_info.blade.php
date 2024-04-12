@@ -1,6 +1,8 @@
 <div class="content_player_data">
-    <div class="player_data">
-        <p>{{ $player->name }}</p>
+    <div class="player_data" style="display: flex; justify-content: left; align-items: center">
+{{--        $this->faker->imageUrl()--}}
+        <img style="width: 50px; border-radius: 50%" src="https://cdn.vectorstock.com/i/500p/71/90/blank-avatar-photo-icon-design-vector-30257190.jpg" alt="">
+        <p style="margin-left: 20px">{{ $player->name }}</p>
     </div>
     <div class="sample_data_player">
         <div style="display: flex; justify-content: center" class="space_p">
@@ -42,9 +44,73 @@
             </div>
         </div>
     </div>
+
+{{--    Player SKILLS--}}
+    <table class="player_skill_Table">
+        <tr>
+            <th>KEEP</th>
+            <th>TACKL</th>
+            <th>PASS</th>
+            <th>SHOT</th>
+            <th>SPEED</th>
+            <th>CTRL</th>
+            <th>HEAD</th>
+            <th>DRBBL</th>
+            <th>FLAIR</th>
+            <th>AGGR</th>
+            <th>STAM</th>
+            <th>FORM</th>
+            <th>MORALE</th>
+        </tr>
+
+        <tr style="margin-top: 10px">
+            <td>{{ $player->current_keep }}</td>
+            <td>{{ $player->current_tackle }}</td>
+            <td>{{ $player->current_pass }}</td>
+            <td>{{ $player->current_shot }}</td>
+            <td>{{ $player->current_speed }}</td>
+            <td>{{ $player->current_control }}</td>
+            <td>{{ $player->current_heading }}</td>
+            <td>{{ $player->current_dribble }}</td>
+            <td>{{ $player->flair }}</td>
+            <td>{{ $player->aggression }}</td>
+            <td>{{ $player->stamina }}</td>
+            <td>Superb</td>
+            <th>Superb</th>
+        </tr>
+    </table>
 </div>
 
 <style>
+    .players_container th{
+        font-size: 20px;
+    }
+    .player_skill_Table{
+        color: white;
+        padding: 10px;
+        overflow: hidden;
+    }
+    .player_skill_Table {
+        width: 100%;
+        margin-top: 30px;
+        text-align: center;
+    }
+    .player_skill_Table tr th {
+        font-size: 18px;
+    }
+    .player_skill_Table td{
+        padding: 7px 0;
+        cursor: pointer;
+    }
+    .player_skill_Table td:hover{
+        background-color: rgba(128, 128, 128, 0.3);
+    }
+    .player_skill_Table{
+        color: white;
+        width: 100%;
+        text-align: center;
+        margin-top: 30px;
+    }
     .player_data{
         padding: 15px;
         color: white;
@@ -68,6 +134,7 @@
         width: 60%;
         margin: 0 auto;
         overflow: hidden;
+        padding: 50px 0;
         min-height: 50vh;
     }
     .sample_data_player{
