@@ -66,6 +66,11 @@ class TeamsController extends Controller
                     ->table("employees")->where("teamid", $the_team->id)
                     ->get();
                 break;
+            case "press":
+                $the_type = DB::connection(env("DB_STARTUP") . $gameid)
+                    ->table("pressrelease")->where("teamid", $the_team->id)
+                    ->get();
+                break;
         }
 
         $game = new Games();
@@ -118,17 +123,13 @@ class TeamsController extends Controller
     }
 
     public function player_info($gameid, $player){
-        if (!session()->has("gameid_in") || session()->get("gameid_in") !== $gameid){
-            return redirect()->route("games.my");
-        }
-
         $game = new Games();
 //        Get Teams
         $data = $game->get_game_information($gameid);
 
 //        Get the player
         $player = DB::connection(env("DB_STARTUP") . $gameid)
-            ->table("players")->where("id", $player)
+            ->table("players")->where("name", $player)
             ->first();
         if (!$player){
             throw new NotFoundHttpException();
@@ -151,6 +152,83 @@ class TeamsController extends Controller
             "game_header" => true,
             "player" => $player,
             "team" => $fromTeam
+        ]);
+    }
+    public function staff_info($gameid, $staff){
+        if (!session()->has("gameid_in") || session()->get("gameid_in") !== $gameid){
+            return redirect()->route("games.my");
+        }
+
+        $game = new Games();
+//        Get Teams
+        $data = $game->get_game_information($gameid);
+
+        $staff = DB::connection(env("DB_STARTUP") . $gameid)
+            ->table('employees')->where("name", $staff)->first();
+        if (!$staff){
+            throw new NotFoundHttpException();
+        }
+
+        $fromTeam = DB::connection(env("DB_STARTUP") . $gameid)
+            ->table("teams")->where("id", $staff->teamid)
+            ->first();
+        if (!$fromTeam){
+            throw new NotFoundHttpException();
+        }
+
+        return view("GameDashboard.index", [
+            "game" => [
+                "data" => $data,
+                "id" => $gameid
+            ],
+            "with_up_header" => false,
+            "type" => "staff_info",
+            "game_header" => true,
+            "staff" => $staff,
+            "team" => $fromTeam
+        ]);
+    }
+
+    public function search($gameid, Request $request) {
+        $type = $request->get("type_search");
+        $containing = $request->get("containing");
+//        $blogs = \App\Models\Blogs::where('title', 'LIKE', '%' . $q . '%')->get();
+        $list = null;
+
+        switch ($type){
+            case "players":
+                $table = 'players';
+                break;
+            case "managers":
+                $table = 'employees';
+                break;
+            case "teams":
+                $table = 'teams';
+                break;
+        }
+
+        $list = DB::connection(env("DB_STARTUP") . $gameid)
+                ->table($table)->where("name", 'LIKE', '%' . $containing . '%')
+                ->take(21)->get();
+        return redirect()->back()->with(["list" => $list, "type" => $type]);
+    }
+    public function search_redirect($gameid){
+        if (!session()->has("gameid_in") || session()->get("gameid_in") !== $gameid){
+            return redirect()->route("games.my");
+        }
+
+        $game = new Games();
+//        Get Teams
+        $data = $game->get_game_information($gameid);
+
+        return view("GameDashboard.index", [
+            "game" => [
+                "data" => $data,
+                "id" => $gameid
+            ],
+            "with_up_header" => false,
+            "type" => "search",
+            "game_header" => true,
         ]);
     }
 }

@@ -28,7 +28,7 @@
                     $newName = $firstInitial . '. ' . $restOfName;
                 @endphp
                 <td>
-                    <a href="{{ route("games.manage.player.info", [$game['id'], $player->id]) }}">
+                    <a href="{{ route("games.manage.player.info", [$game['id'], $player->name]) }}">
                         {{ $newName }}
                     </a>
                 </td>

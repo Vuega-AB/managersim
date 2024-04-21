@@ -29,6 +29,9 @@
             @case("staff")
                 @include("GameDashboard.Pages.Teams.staff")
                 @break
+            @case("press")
+                @include("GameDashboard.Pages.Teams.press")
+                @break
         @endswitch
     </div>
 </div>

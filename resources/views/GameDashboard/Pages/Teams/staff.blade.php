@@ -18,7 +18,11 @@
                         @php $profession = "Physio" @endphp
                         @break;
                 @endswitch
-                <td>{{ $staff->name }}</td>
+                <td>
+                    <a href="{{ route("games.manage.staff.info", [$game['id'], $staff->name]) }}">
+                        {{ $staff->name }}
+                    </a>
+                </td>
                 <td>{{ $profession }}</td>
                 <td>{{ $staff->location }}</td>
             </tr>

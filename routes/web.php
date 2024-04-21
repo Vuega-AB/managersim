@@ -47,14 +47,20 @@ Route::middleware('auth')->name("games.")->group(function (){
                    Route::get("/fixtures", [\App\Http\Controllers\TeamsController::class, "team_cat_redirect"])->name("fixtures");
                    Route::get("/players", [\App\Http\Controllers\TeamsController::class, "team_cat_redirect"])->name("players");
                    Route::get("/staff", [\App\Http\Controllers\TeamsController::class, "team_cat_redirect"])->name("staff");
+                   Route::get("/press", [\App\Http\Controllers\TeamsController::class, "team_cat_redirect"])->name("press");
 
                    Route::prefix("/jobs/")->name("jobs.")->group(function (){
                       Route::post("/apply", [\App\Http\Controllers\TeamsController::class, "apply_for_job"])->name("apply");
                    });
                });
-
-               Route::get("/player-info/{player}", [\App\Http\Controllers\TeamsController::class, "player_info"])->name("player.info");
            });
+
+           Route::get("/player-info/{player}", [\App\Http\Controllers\TeamsController::class, "player_info"])->name("player.info");
+           Route::get("/staff-info/{staff}", [\App\Http\Controllers\TeamsController::class, "staff_info"])->name("staff.info");
+
+//            Search Routes games.manage.search
+           Route::get("/search", [\App\Http\Controllers\TeamsController::class, "search_redirect"])->name("search");
+           Route::get("/search/find", [\App\Http\Controllers\TeamsController::class, "search"])->name("find");
        });
    });
 });

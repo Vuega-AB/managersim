@@ -34,6 +34,12 @@
     @case("player_info")
         @include("GameDashboard.Pages.player_info")
         @break;
+    @case("staff_info")
+        @include("GameDashboard.Pages.staff_info")
+        @break;
+    @case("search")
+        @include("GameDashboard.Pages.search")
+        @break;
 @endswitch
 
 @include("Elements.footer")

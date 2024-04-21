@@ -10,7 +10,7 @@
         <a href=""><img src="{{ asset("game_btns/cup_mail_anim.gif") }}" alt="Mail"></a>
         <a href=""><img src="{{ asset("game_btns/deals.png") }}" alt="Negotiations"></a>
         <a href=""><img src="{{ asset("game_btns/world.png") }}" alt="Map"></a>
-        <a href=""><img src="{{ asset("game_btns/search.png") }}" alt="Search"></a>
+        <a href="{{ route("games.manage.search", $game['id']) }}"><img src="{{ asset("game_btns/search.png") }}" alt="Search"></a>
         <a href=""><img src="{{ asset("game_btns/managers.png") }}" alt="Manager list"></a>
         <a href=""><img src="{{ asset("game_btns/rankings.png") }}" alt="Rankings"></a>
         <a href=""><img src="{{ asset("game_btns/forums.png") }}" alt="Managersim Discord"></a>

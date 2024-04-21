@@ -53,7 +53,7 @@ body {
     background-color: #171615;
     font-family: "Josefin Sans", sans-serif;
 }
-button{
+*{
     font-family: "Josefin Sans", sans-serif;
 }
 ::-webkit-scrollbar {
@@ -76,4 +76,30 @@ button{
 }
 html {
     scroll-behavior: smooth;
+}
+.asset_input_2{
+    border: none;
+    background-color: transparent;
+    color: #a6a4a6;
+    padding: 20px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    box-sizing: border-box;
+}
+.asset_input_2::placeholder{
+    color: #a6a4a6;
+}
+.default_select{
+    padding: 10px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #171615;
+    border: none;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+}
+.default_select:focus{
+    outline: none;
 }
