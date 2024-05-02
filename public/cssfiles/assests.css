@@ -103,3 +103,11 @@ html {
 .default_select:focus{
     outline: none;
 }
+
+*:focus{
+    outline: none;
+}
+a:focus{
+    outline: 3px solid #0087ff;
+    border-radius: 10px;
+}

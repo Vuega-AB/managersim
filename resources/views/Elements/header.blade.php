@@ -4,9 +4,9 @@
             <p><i class="fa-solid fa-phone"></i> +373 123 456 789</p>
 
             <div class="icon_header">
-                <i class="fa-brands fa-instagram"></i>
-                <i class="fa-brands fa-twitter"></i>
-                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-instagram tab_set"></i>
+                <i class="fa-brands fa-twitter tab_set"></i>
+                <i class="fa-brands fa-facebook tab_set"></i>
             </div>
         </div>
     </div>
@@ -15,18 +15,21 @@
     <p class="header_p">MANAGERSIM.net</p>
     <div class="space_flex_right">
         @if(auth()->user())
-            <a href="{{ route("welcome") }}"><button class="default_btn">Home</button></a>
-            <a href="{{ route("games.available") }}"><button class="default_btn">Games</button></a>
-            <a href="{{ route("games.my") }}"><button class="specific_btn">MY GAMES</button></a>
-            <i class="fa-solid fa-user header_user"></i>
+            <a href="{{ route("welcome") }}"><button class="default_btn tab_set">Home</button></a>
+            <a href="{{ route("games.available") }}"><button class="default_btn tab_set">Games</button></a>
+            <a href="{{ route("games.my") }}"><button class="specific_btn tab_set">MY GAMES</button></a>
+            <i class="fa-solid fa-user header_user tab_set"></i>
         @else
-            <button class="default_btn">Home</button>
-            <button class="default_btn">Announces</button>
-            <a href="{{ route("login") }}"><button class="specific_btn">LOGIN</button></a>
+            <button class="default_btn tab_set">Home</button>
+            <button class="default_btn tab_set">Announces</button>
+            <a href="{{ route("login") }}"><button class="specific_btn tab_set">LOGIN</button></a>
         @endif
     </div>
 </div>
 <style>
+    .space_flex_right a{
+        margin: 0 5px;
+    }
     .icon_header i{
         font-size: 20px;
         margin: 0 2px;

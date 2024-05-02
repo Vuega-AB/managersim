@@ -54,6 +54,8 @@ class TeamsController extends Controller
                 break;
             case "information":
                 $rname = "";
+                $the_type = DB::connection(env("DB_STARTUP") . $gameid)
+                        ->table("leagues")->where("id", $the_team->currentleagueid)->first();
                 break;
             case "players":
 

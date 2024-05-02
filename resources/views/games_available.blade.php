@@ -19,7 +19,7 @@
         @if(count($games) > 0)
             <div class="content" style="grid-template-columns: repeat(@if(count($games) <= 2) {{ count($games) }} @else 3 @endif, 33%);">
                 @foreach($games as $game)
-                    <a href="{{ route("games.info", $game[0]) }}">
+                    <a href="{{ route("games.info", $game[0]) }}" class="tab_set">
                         <div class="game_categ default_shadow">
                             <div class="game_id">
                                 <p>{{ ucwords($game["information"]["displayname"]) }}</p>

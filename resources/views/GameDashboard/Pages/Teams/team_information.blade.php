@@ -8,16 +8,42 @@
         @switch($team_type)
             @case("")
                 <div class="information">
+                    <p style="margin: 0; text-decoration: underline">Currently playing in {{ $team_data[1]->name  }}</p>
                     @if($team_data[0]->humanplayerid == "")
-                        <form method="post" action="{{ route('games.manage.teams.jobs.apply', [$game['id'], $team_data[0]->id]) }}" style="display: flex; justify-content: space-between; margin-top: 20px; align-items: center">
+                        <form method="post" action="{{ route('games.manage.teams.jobs.apply', [$game['id'], $team_data[0]->id]) }}" style="display: flex; justify-content: space-between; align-items: center">
                             @csrf
-                            <p style="font-size: 20px; font-weight: bold">Has no manager and is looking for one</p>
+                            <p style="font-size: 20px; font-weight: bold; margin-top: 10px">Has no manager and is looking for one</p>
 
                             <button class="specific_btn" style="background-color: #666666">Send Job Application</button>
                         </form>
                     @else
-                        <p style="font-size: 20px; font-weight: bold">Already has a manager</p>
+                        <p style="font-size: 20px; margin-top: 10px; font-weight:bold">Already has a manager - {{ \App\Models\User::where("login", $team_data[0]->humanplayerid)->first()->realname }}</p>
                     @endif
+
+                    <hr style="margin: 40px auto; width: 50%; opacity: 0.5">
+                    <div class="div_class_data_flex">
+                        <div>
+                            <p>Goals this Season: </p>
+                            <p>Reputation: </p>
+                            <p>Academy Ranking: </p>
+                            <p>Stadium: </p>
+                        </div>
+                        <div>
+                            @php
+                                $data_to_show = ["goals", "teamrating", "popularity", "stadium"]
+                            @endphp
+                            @foreach($data_to_show as $data)
+                                <p>
+                                    @if(!empty($team_data[0]->$data))
+                                        {{ $team_data[0]->$data }}
+                                    @else
+                                        0
+                                    @endif
+                                </p>
+                            @endforeach
+                        </div>
+                    </div>
+
                 </div>
                 @break;
             @case("fixtures")
@@ -37,6 +63,19 @@
 </div>
 
 <style>
+{{--    Team information--}}
+    .div_class_data_flex{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .div_class_data_flex p{
+        font-size: 20px;
+        margin: 5px 0;
+
+    }
+    /*End*/
     .information{
         color: white;
         padding: 10px 20px;
